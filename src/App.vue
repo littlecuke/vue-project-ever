@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <board ref="board"></board>
+    <boardForm @change-value="changeValue"></boardForm>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import board from './components/board';
+import boardForm from './components/form'
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    data() {
+        return {
+            boardData: {
+                width: 0,
+                height: 0,
+            },
+        }
+    },
+    components: {
+        board,
+        boardForm
+    },
+    methods: {
+        changeValue(data) {
+            this.$refs.board.setDataEvent(data);
+        },
+    },
 }
 </script>
 
 <style>
+html ,body { width: 100%; height: 100%; overflow: hidden; position: absolute; padding: 0; margin: 0;}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
